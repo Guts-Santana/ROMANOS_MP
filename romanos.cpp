@@ -76,6 +76,14 @@ bool sintaxe_errada(string rom)
             {
                 return true;
             }
+            for (int k=i+2;k<(int)rom.length();k++)
+            {
+                if (rom[k]!='I' || rom[k]!='V')
+                {
+                    return true;
+                }
+            }
+            
         }
         if (rom[i]=='L')
         {
@@ -125,6 +133,13 @@ bool sintaxe_errada(string rom)
             if (valor>3)
             {
                 return true;
+            }
+            for (int k=i+2;k<(int)rom.length()-1;k++)
+            {
+                if (rom[k]!='I' || rom[k]!='V' || rom[k]!='X')
+                {
+                    return true;
+                }
             }
         }
         if (rom[i]=='M')
