@@ -162,6 +162,28 @@ bool sintaxe_errada(string rom)
 }
 
 
+bool repetida_com_reducao(string rom)
+{
+  for (int i=1;i<(int)rom.length()-1;i++)
+  {
+    if (rom[i]=='X' && rom[i-1]=='I' && rom[i+1]=='X')
+    { 
+      return true;
+    }
+    if (rom[i]=='C' && rom[i-1]=='X' && rom[i+1]=='C')
+    {
+      return true;
+    }
+    if (rom[i]=='M' && rom[i-1]=='C' && rom[i+1]=='M')
+    {
+      return true;
+    }
+  }
+  return false; 
+}
+
+
+
 int romanos_para_decimal(string romano)
 {
     if (letra_invalida(romano))
@@ -171,6 +193,11 @@ int romanos_para_decimal(string romano)
     else if (sintaxe_errada(romano))
     {
       return -1;
+    }
+
+    if (repetida_com_reducao(romano))
+    {
+        return -1;
     }
   return 0;
 }
