@@ -18,6 +18,134 @@ bool letra_invalida(string rom)
     return false;
 }
 
+bool sintaxe_errada(string rom)
+{
+    for (int i=0; i<(int)rom.length()-1; i++)
+    {int valor=0;
+        if (rom[i]=='I')
+        {
+            if (rom[i+1]!='V' || rom[i+1]!='I' || rom[i+1]!='X')
+            {
+               return true;
+            }
+            for (int j=0;j<(int)rom.length();j++)
+            {
+                if (rom[j]==rom[i])
+                {
+                    valor++;
+                }
+            }
+            if (valor>3)
+            {
+                return true;
+            }
+        
+        }
+        if (rom[i]=='V')
+        {
+            if (rom[-i+1]!='I')
+            {
+                return true;
+            }
+            for (int j=0;j<(int)rom.length();j++)
+            {
+                if (rom[j]==rom[i])
+                {
+                    valor++;
+                }
+            }
+            if (valor>1)
+            {
+                return true;
+            }
+        }
+        if (rom[i]=='X')
+        {
+            if (rom[i+1]=='D' || rom[i+1]=='M')
+            {
+            return true;
+            }
+            for (int j=0;j<(int)rom.length();j++)
+            {
+                if (rom[j]==rom[i])
+                {
+                    valor++;
+                }
+            }
+            if (valor>3)
+            {
+                return true;
+            }
+        }
+        if (rom[i]=='L')
+        {
+            if (rom[i+1]!='V' || rom[i+1]!='I' || rom[i+1]!='X')
+            {
+                return true;
+            }
+            for (int j=0;j<(int)rom.length();j++)
+            {
+                if (rom[j]==rom[i])
+                {
+                    valor++;
+                }
+            }
+            if (valor>1)
+            {
+                return true;
+            }
+        }
+        if (rom[i]=='D')
+        {
+            if (rom[i+1]=='M' || rom[i+1]=='D')
+        {
+            return true;
+        }
+                    for (int j=0;j<(int)rom.length();j++)
+            {
+                if (rom[j]==rom[i])
+                {
+                    valor++;
+                }
+            }
+            if (valor>1)
+            {
+                return true;
+            }
+        }
+        if (rom[i]=='C')
+        {
+            for (int j=0;j<(int)rom.length();j++)
+            {
+                if (rom[j]==rom[i])
+                {
+                    valor++;
+                }
+            }
+            if (valor>3)
+            {
+                return true;
+            }
+        }
+        if (rom[i]=='M')
+        {
+            for (int j=0;j<(int)rom.length();j++)
+            {
+                if (rom[j]==rom[i])
+                {
+                    valor++;
+                }
+            }
+            if (valor>3)
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 
 int romanos_para_decimal(string romano)
 {
@@ -25,4 +153,10 @@ int romanos_para_decimal(string romano)
     {
       return -1;
     }
+    else if (sintaxe_errada(romano))
+    {
+      return -1;
+    }
+  return 0;
 }
+
