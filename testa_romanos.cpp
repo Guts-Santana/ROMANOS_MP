@@ -96,7 +96,7 @@ TEST_CASE( "Numeros romanos - algarismos inv�lidos", "[romanos]" ) {
 
     REQUIRE( romanos_para_decimal("MIXC") == -1);
 
-    REQUIRE( romanos_para_decimal("MLX") == -1);
+    REQUIRE( romanos_para_decimal("MLXVV") == -1);
 
     REQUIRE( romanos_para_decimal("CCD") == -1);
 

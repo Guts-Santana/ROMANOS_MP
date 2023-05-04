@@ -77,15 +77,22 @@ bool sintaxe_errada(string rom)
         }
         if (rom[i]=='X')
         {
-            for (int j=i;j<(int)rom.length();j++)
+            for (int j=i+1;j<(int)rom.length();j++)
             {
                 if (rom[j]=='M' || rom[j]=='D')
                 {
                     return true;
                 }
-                if (j!=i+1)
+                if (rom[j]=='C' || rom[j]=='L')
                 {
-                    if (rom[j]=='C' || rom[j]=='L')
+                    if (j!=i+1)
+                    {
+                        return true;
+                    }
+                }
+                if (rom[i+1]=='C' || rom[i+1]=='L')
+                {
+                    if (rom[j]=='X')
                     {
                         return true;
                     }
@@ -138,7 +145,7 @@ bool sintaxe_errada(string rom)
         }
         if (rom[i]=='C')
         {
-            for (int k=i;k<(int)rom.length();k++)
+            for (int k=i+1;k<(int)rom.length();k++)
             {
                 if (rom[k]=='M' || rom[k]=='D')
                 {
@@ -146,6 +153,14 @@ bool sintaxe_errada(string rom)
                     {
                         return true;
                     }
+                }
+                if (rom[i+1]=='M' || rom[i+1]=='D')
+                {
+                    if (rom[k]=='C')
+                    {
+                        return true;
+                    }
+                }
                 }
             }
             for (int j=0; j<(int)rom.length();j++)
@@ -159,7 +174,6 @@ bool sintaxe_errada(string rom)
             {
                 return true;
             }
-        }
         if(rom[i]=='D')
         {
             for (int j=0; j<(int)rom.length();j++)
@@ -190,7 +204,7 @@ bool sintaxe_errada(string rom)
         }
     }
     return false;
-} 
+}   
 
 
 
