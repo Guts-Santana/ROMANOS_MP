@@ -103,7 +103,20 @@ TEST_CASE( "Numeros romanos - algarismos inv�lidos", "[romanos]" ) {
     REQUIRE( romanos_para_decimal("MMMM") == -1);
     
     REQUIRE( romanos_para_decimal("ICXV") == -1);
+
+    REQUIRE( romanos_para_decimal("XLIX") == -1);
+
+    REQUIRE( romanos_para_decimal("CMIC") == -1);
+
+    REQUIRE( romanos_para_decimal("CIMD") == -1);
     
+    REQUIRE( romanos_para_decimal("LDVM") == -1);
+
+    REQUIRE( romanos_para_decimal("MMCD") == -1);
+
+    REQUIRE( romanos_para_decimal("DDMC") == -1);
+
+    REQUIRE( romanos_para_decimal("XCCXC") == -1);
 }
 
 

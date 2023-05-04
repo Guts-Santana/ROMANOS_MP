@@ -1,5 +1,5 @@
 #include "romanos.hpp"
-#include <bits/stdc++.h>
+#include <string>
 
 using namespace std;
 
@@ -205,6 +205,66 @@ bool sintaxe_errada(string rom)
     }
     return false;
 }   
+
+int valor_decimal(string rom)
+{
+    int decimal=0;
+
+    for (int i=0; i<rom.length();i++)
+    {
+        if (rom[i]=='C')
+        {
+            if ((rom[i+1]=='D' || rom[i+1]=='M') && i!=rom.length()-1)
+            {
+                decimal-=100;
+            }
+            else
+            {
+                decimal+=100;
+            }
+        }
+        if (rom[i]=='X')
+        {
+            if ((rom[i+1]=='L' || rom[i+1]=='C') && i!=rom.length()-1)
+            {
+                decimal-=10;
+            }
+             else
+            {
+                decimal+=10;
+            }
+        }
+            if (rom[i]=='I')
+        {
+            if ((rom[i+1]=='V' || rom[i+1]=='X') && i!=rom.length()-1)
+            {
+                decimal-=1;
+            }
+            else
+            {
+                decimal+=1;
+            }
+        }
+        if (rom[i]=='M')
+        {
+            decimal+=1000;
+        }
+        if (rom[i]=='D')
+        {
+            decimal+=500;
+        }
+        if (rom[i]=='L')
+        {
+            decimal+=50;
+        }
+        if (rom[i]=='V')
+        {
+            decimal+=5;
+        }
+    }
+
+    return decimal;
+}
 
 
 
