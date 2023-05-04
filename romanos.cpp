@@ -210,11 +210,11 @@ int valor_decimal(string rom)
 {
     int decimal=0;
 
-    for (int i=0; i<rom.length();i++)
+    for (int i=0; i<(int)rom.length();i++)
     {
         if (rom[i]=='C')
         {
-            if ((rom[i+1]=='D' || rom[i+1]=='M') && i!=rom.length()-1)
+            if ((rom[i+1]=='D' || rom[i+1]=='M') && i!=(int)rom.length()-1)
             {
                 decimal-=100;
             }
@@ -225,7 +225,7 @@ int valor_decimal(string rom)
         }
         if (rom[i]=='X')
         {
-            if ((rom[i+1]=='L' || rom[i+1]=='C') && i!=rom.length()-1)
+            if ((rom[i+1]=='L' || rom[i+1]=='C') && i!=(int)rom.length()-1)
             {
                 decimal-=10;
             }
@@ -236,7 +236,7 @@ int valor_decimal(string rom)
         }
             if (rom[i]=='I')
         {
-            if ((rom[i+1]=='V' || rom[i+1]=='X') && i!=rom.length()-1)
+            if ((rom[i+1]=='V' || rom[i+1]=='X') && i!=(int)rom.length()-1)
             {
                 decimal-=1;
             }
