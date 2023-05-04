@@ -2,7 +2,7 @@
 #include "catch.hpp"
 #include "romanos.hpp"
 
-/*
+
 TEST_CASE( "Numeros romanos - algarismos �nicos", "[romanos]" ) {
     REQUIRE( romanos_para_decimal("I") == 1 );
     
@@ -18,8 +18,6 @@ TEST_CASE( "Numeros romanos - algarismos �nicos", "[romanos]" ) {
 
     REQUIRE( romanos_para_decimal("M") == 1000 );
 }
-*/
-
 
 
 TEST_CASE( "Numeros romanos - algarismos inv�lidos", "[romanos]" ) {
@@ -119,4 +117,25 @@ TEST_CASE( "Numeros romanos - algarismos inv�lidos", "[romanos]" ) {
     REQUIRE( romanos_para_decimal("XCCXC") == -1);
 }
 
+    TEST_CASE( "numeros romanos - numeros validos", "[romanos]")
+    {
+        REQUIRE( romanos_para_decimal("CXVII") == 117);
 
+        REQUIRE( romanos_para_decimal("LXXXI") == 1234);
+
+        REQUIRE( romanos_para_decimal("MCCXXXIV") == 265);
+
+        REQUIRE( romanos_para_decimal("CCLXV") == 1995);
+
+        REQUIRE( romanos_para_decimal("MCMXCV") == 49);
+
+        REQUIRE( romanos_para_decimal("XLIX") == 667);
+
+        REQUIRE( romanos_para_decimal("DCLXVII") == 913);
+
+        REQUIRE( romanos_para_decimal("CMXIII") == 2446);
+
+        REQUIRE( romanos_para_decimal("MMCDXLVI") == 981);
+
+        REQUIRE( romanos_para_decimal("MMM") == 1000);
+    }

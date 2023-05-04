@@ -279,6 +279,6 @@ int romanos_para_decimal(string romano)
       return -1;
     }
 
-  return 0;
+  return valor_decimal(romano);
 }
 
