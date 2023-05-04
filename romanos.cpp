@@ -52,7 +52,7 @@ bool sintaxe_errada(string rom)
             {
                 return true;
             }
-            if (rom[i+1]!='I')
+            if (rom[i+1]!='I' && rom[i+1]!='V' && rom[i+1]!='X')
             {
                 return true;
             }
@@ -92,7 +92,7 @@ bool sintaxe_errada(string rom)
                 }
                 if (rom[i+1]=='C' || rom[i+1]=='L')
                 {
-                    if (rom[j]=='X')
+                    if (rom[j]=='X' && rom[j-1]!='I')
                     {
                         return true;
                     }
@@ -156,11 +156,10 @@ bool sintaxe_errada(string rom)
                 }
                 if (rom[i+1]=='M' || rom[i+1]=='D')
                 {
-                    if (rom[k]=='C')
+                    if (rom[k]=='C' && rom[k-1]!='X')
                     {
                         return true;
                     }
-                }
                 }
             }
             for (int j=0; j<(int)rom.length();j++)
@@ -174,6 +173,7 @@ bool sintaxe_errada(string rom)
             {
                 return true;
             }
+        }
         if(rom[i]=='D')
         {
             for (int j=0; j<(int)rom.length();j++)
@@ -190,6 +190,13 @@ bool sintaxe_errada(string rom)
         }
         if(rom[i]=='M')
         {
+            for (int k=i+1;k<(int)rom.length();k++)
+            {
+                if (rom[k]==rom[i] && k>i+2)
+                {
+                    return true;
+                }
+            }
             for (int j=0; j<(int)rom.length();j++)
             {
                 if (rom[j]==rom[i])
