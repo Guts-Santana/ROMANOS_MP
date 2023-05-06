@@ -138,4 +138,38 @@ TEST_CASE( "Numeros romanos - algarismos inv�lidos", "[romanos]" ) {
         REQUIRE( romanos_para_decimal("MMCDXLVI") == 2446);
 
         REQUIRE( romanos_para_decimal("MMM") == 3000);
+
+        REQUIRE( romanos_para_decimal("MMCMXC") == 2990);
+
+        REQUIRE( romanos_para_decimal("XLIII") == 43);
+
+        REQUIRE( romanos_para_decimal("DCCCV") == 805);
+
+        REQUIRE( romanos_para_decimal("MCDXXX") == 1430);
+
+        REQUIRE( romanos_para_decimal("LXXIII") == 73);
+
+        REQUIRE( romanos_para_decimal("DCCCXXXV") == 835);
+
+        REQUIRE( romanos_para_decimal("LIX") == 59);
+
+        REQUIRE( romanos_para_decimal("MMCDLVII") == 2457);
+
+        REQUIRE( romanos_para_decimal("CXVI") == 116);
+
+        REQUIRE( romanos_para_decimal("MCCXXXII") == 1232);
+
+        REQUIRE( romanos_para_decimal("CCCLXXI") == 371);
+
+        REQUIRE( romanos_para_decimal("CCCXCI") == 391);
+
+        REQUIRE( romanos_para_decimal("DCCLXXXVI") == 786);
+
+        REQUIRE( romanos_para_decimal("LXVI") == 66);
+
+        REQUIRE( romanos_para_decimal("DCCXCVI") == 796);
+
+        REQUIRE( romanos_para_decimal("DCIX") == 609);
+
+
     }

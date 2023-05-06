@@ -4,222 +4,308 @@
         -:    3:
         -:    4:using namespace std;
         -:    5:
-       41:    6:bool letra_invalida(string rom)
+       78:    6:bool letra_invalida(string rom)
         -:    7:{
-       41:    8:    string letras = "MDCLXVI";
+       78:    8:    string letras = "MDCLXVI";
         -:    9:    
-      162:   10:    for (int i = 0; i < (int)rom.length(); i++)
+      378:   10:    for (int i = 0; i < (int)rom.length(); i++)
         -:   11:    {
-      132:   12:        if (letras.find(rom[i])==string::npos)
+      311:   12:        if (letras.find(rom[i])==string::npos)
         -:   13:        {
        11:   14:            return true;
         -:   15:        }
         -:   16:    }
         -:   17:
-       30:   18:    return false;
-       41:   19:}
+       67:   18:    return false;
+       78:   19:}
         -:   20:
         -:   21:
-       30:   22:bool sintaxe_errada(string rom)
+       67:   22:bool sintaxe_errada(string rom)
         -:   23:{
-       42:   24:    for (int i=0;i<(int)rom.length()-1;i++)
+      216:   24:    for (int i=0;i<(int)rom.length()-1;i++)
         -:   25:    {
-       42:   26:        int valor=0;
-       42:   27:        if (rom[i]=='I')
+      183:   26:        int valor=0;
+      183:   27:        if (rom[i]=='I')
         -:   28:        {
-        9:   29:            if (rom[i+1]=='V' || rom[i+1]=='X')
+       28:   29:            if (rom[i+1]=='V' || rom[i+1]=='X')
         -:   30:            {
-        8:   31:                for (int j=0;j<i;j++)
+       32:   31:                for (int j=0;j<i;j++)
         -:   32:                {
-        4:   33:                    if (rom[i]==rom[j])
+       21:   33:                    if (rom[i]==rom[j])
         -:   34:                    {
-    #####:   35:                        return true;
+        1:   35:                        return true;
         -:   36:                    }
         -:   37:                }
-        4:   38:                if (i!=(int)rom.length()-2)
+       11:   38:                if (i!=(int)rom.length()-2)
         -:   39:                {
-        4:   40:                    return true;
+        7:   40:                    return true;
         -:   41:                }
         -:   42:            }
         -:   43:            //Ler a quantidade de Is;
-       21:   44:            for (int k=0;k<(int)rom.length();k++)
+      124:   44:            for (int k=0;k<(int)rom.length();k++)
         -:   45:            {
-       16:   46:                if (rom[k]==rom[i])
+      104:   46:                if (rom[k]==rom[i])
         -:   47:                {
-        7:   48:                    valor++;
+       41:   48:                    valor++;
         -:   49:                }
         -:   50:            }
-        5:   51:            if (valor>3)
+       20:   51:            if (valor>3)
         -:   52:            {
-    #####:   53:                return true;
+        1:   53:                return true;
         -:   54:            }
-        5:   55:            if (rom[i+1]!='I')
+       19:   55:            if (rom[i+1]!='I' && rom[i+1]!='V' && rom[i+1]!='X')
         -:   56:            {
         4:   57:                return true;
         -:   58:            }
         -:   59:        }
-       34:   60:        if (rom[i]=='V')
+      170:   60:        if (rom[i]=='V')
         -:   61:        {
-       10:   62:            for (int j=0; j<(int)rom.length();j++)
+       70:   62:            for (int j=0; j<(int)rom.length();j++)
         -:   63:            {
-        8:   64:                if (rom[j]==rom[i])
+       60:   64:                if (rom[j]==rom[i])
         -:   65:                {
-        5:   66:                    valor++;
+       13:   66:                    valor++;
         -:   67:                }
         -:   68:            }
-        2:   69:            if (valor>1)
+       10:   69:            if (valor>1)
         -:   70:            {
         2:   71:                return true;
         -:   72:            }
-    #####:   73:            if (rom[i+1]!='I')
+        8:   73:            if (rom[i+1]!='I')
         -:   74:            {
     #####:   75:                return true;
         -:   76:            }
         -:   77:        }
-       32:   78:        if (rom[i]=='X')
+      168:   78:        if (rom[i]=='X')
         -:   79:        {
-       13:   80:            for (int j=i+1;j<(int)rom.length();j++)
+      135:   80:            for (int j=i+1;j<(int)rom.length();j++)
         -:   81:            {
-       11:   82:                if (rom[j]=='M' || rom[j]=='D')
+       98:   82:                if (rom[j]=='M' || rom[j]=='D')
         -:   83:                {
         2:   84:                    return true;
         -:   85:                }
-        9:   86:                if (rom[j]=='C' || rom[j]=='L')
+       96:   86:                if (rom[j]=='C' || rom[j]=='L')
         -:   87:                {
-        2:   88:                    if (j!=i+1)
+       11:   88:                    if (j!=i+1)
         -:   89:                    {
-    #####:   90:                        return true;
+        1:   90:                        return true;
         -:   91:                    }
         -:   92:                }
-        9:   93:                if (rom[i+1]=='C' || rom[i+1]=='L')
+       95:   93:                if (rom[i+1]=='C' || rom[i+1]=='L')
         -:   94:                {
-        4:   95:                    if (rom[j]=='X')
+      24*:   95:                    if (rom[j]=='X' && rom[j-1]!='I')
         -:   96:                    {
-        1:   97:                        return true;
+    #####:   97:                        return true;
         -:   98:                    }
         -:   99:                }
         -:  100:            }
-       11:  101:            for (int k=0;k<(int)rom.length();k++)
+      276:  101:            for (int k=0;k<(int)rom.length();k++)
         -:  102:            {
-        9:  103:                if (rom[k]==rom[i])
+      239:  103:                if (rom[k]==rom[i])
         -:  104:                {
-        3:  105:                    valor++;
+       78:  105:                    valor++;
         -:  106:                }
         -:  107:            }
-        2:  108:            if (valor>3)
+       37:  108:            if (valor>3)
         -:  109:            {
     #####:  110:                return true;
         -:  111:            }
-       2*:  112:            for (int k=0;k>(int)rom.length();k++)
+      37*:  112:            for (int k=0;k>(int)rom.length();k++)
         -:  113:            {
     #####:  114:                if (rom[i]==rom[k])
         -:  115:                {
-    #####:  116:                    valor++;
-        -:  117:                }
-        -:  118:            }
-        2:  119:            if (valor>3)
-        -:  120:            {
-    #####:  121:                return true;
+    #####:  116:                    if (valor==3 && rom[k-1]=='I')
+        -:  117:                    {
+    #####:  118:                        valor--;
+        -:  119:                    }
+    #####:  120:                    valor++;
+        -:  121:                }
         -:  122:            }
-        -:  123:
-        -:  124:        }
-       29:  125:        if (rom[i]=='L')
-        -:  126:        {
-       14:  127:            for (int j=0; j<(int)rom.length();j++)
-        -:  128:            {
-       11:  129:                if (rom[j]==rom[i])
-        -:  130:                {
-        6:  131:                    valor++;
-        -:  132:                }
-        -:  133:            }
-        3:  134:            if (valor>1)
-        -:  135:            {
-        2:  136:                return true;
+       37:  123:            if (valor>3)
+        -:  124:            {
+    #####:  125:                return true;
+        -:  126:            }
+        -:  127:
+        -:  128:        }
+      165:  129:        if (rom[i]=='L')
+        -:  130:        {
+      108:  131:            for (int j=0; j<(int)rom.length();j++)
+        -:  132:            {
+       91:  133:                if (rom[j]==rom[i])
+        -:  134:                {
+       20:  135:                    valor++;
+        -:  136:                }
         -:  137:            }
-        5:  138:            for (int k=i;k<(int)rom.length();k++) 
+       17:  138:            if (valor>1)
         -:  139:            {
-       4*:  140:                if ( rom[k]=='M' || rom[k]=='D' || rom[k]=='C')
-        -:  141:                {
-    #####:  142:                    return true;
-        -:  143:                }
-        -:  144:            }
-        -:  145:        }
-       27:  146:        if (rom[i]=='C')
-        -:  147:        {
-       31:  148:            for (int k=i+1;k<(int)rom.length();k++)
-        -:  149:            {
-       27:  150:                if (rom[k]=='M' || rom[k]=='D')
-        -:  151:                {
-        9:  152:                    if (k!=i+1) 
-        -:  153:                    {
-        4:  154:                        return true;
-        -:  155:                    }
-        -:  156:                }
-       23:  157:                if (rom[i+1]=='M' || rom[i+1]=='D')
-        -:  158:                {
-       15:  159:                    if (rom[k]=='C')
-        -:  160:                    {
-        1:  161:                        return true;
-        -:  162:                    }
-        -:  163:                }
-        -:  164:                }
-        -:  165:            }
-      120:  166:            for (int j=0; j<(int)rom.length();j++)
-        -:  167:            {
-       98:  168:                if (rom[j]==rom[i])
-        -:  169:                {
-       32:  170:                    valor++;
-        -:  171:                }
-        -:  172:            }
-       22:  173:            if (valor>3)
-        -:  174:            {
-        3:  175:                return true;
-        -:  176:            }
-       19:  177:        if(rom[i]=='D')
-        -:  178:        {
-       28:  179:            for (int j=0; j<(int)rom.length();j++)
-        -:  180:            {
-       23:  181:                if (rom[j]==rom[i])
-        -:  182:                {
-        8:  183:                    valor++;
-        -:  184:                }
-        -:  185:            }
-        5:  186:            if (valor>1)
-        -:  187:            {
-        5:  188:                return true;
-        -:  189:            }
-        -:  190:        }
-       14:  191:        if(rom[i]=='M')
-        -:  192:        {
-       42:  193:            for (int j=0; j<(int)rom.length();j++)
-        -:  194:            {
-       34:  195:                if (rom[j]==rom[i])
-        -:  196:                {
-       10:  197:                    valor++;
-        -:  198:                }
-        -:  199:            }
-        8:  200:            if (valor>3)
-        -:  201:            {
-        2:  202:                return true;
-        -:  203:            }
-        -:  204:        }
-        -:  205:    }
-    #####:  206:    return false;
-        -:  207:}   
-        -:  208:
-        -:  209:
-        -:  210:
-       41:  211:int romanos_para_decimal(string romano)
-        -:  212:{
-       41:  213:    if (letra_invalida(romano))
-        -:  214:    {
-       11:  215:      return -1;
-        -:  216:    }
-       30:  217:    else if (sintaxe_errada(romano))
-        -:  218:    {
-       30:  219:      return -1;
-        -:  220:    }
-        -:  221:
-    #####:  222:  return 0;
-        -:  223:}
-        -:  224:
+        2:  140:                return true;
+        -:  141:            }
+       74:  142:            for (int k=i;k<(int)rom.length();k++) 
+        -:  143:            {
+       60:  144:                if ( rom[k]=='M' || rom[k]=='D' || rom[k]=='C')
+        -:  145:                {
+        1:  146:                    return true;
+        -:  147:                }
+        -:  148:            }
+        -:  149:        }
+      162:  150:        if (rom[i]=='C')
+        -:  151:        {
+      217:  152:            for (int k=i+1;k<(int)rom.length();k++)
+        -:  153:            {
+      177:  154:                if (rom[k]=='M' || rom[k]=='D')
+        -:  155:                {
+       18:  156:                    if (k!=i+1) 
+        -:  157:                    {
+        5:  158:                        return true;
+        -:  159:                    }
+        -:  160:                }
+      172:  161:                if (rom[i+1]=='M' || rom[i+1]=='D')
+        -:  162:                {
+       44:  163:                    if (rom[k]=='C' && rom[k-1]!='X')
+        -:  164:                    {
+        2:  165:                        return true;
+        -:  166:                    }
+        -:  167:                }
+        -:  168:            }
+      296:  169:            for (int j=0; j<(int)rom.length();j++)
+        -:  170:            {
+      256:  171:                if (rom[j]==rom[i])
+        -:  172:                {
+       90:  173:                    if (valor==3 && rom[j-1]=='X')
+        -:  174:                    {
+        4:  175:                        valor--;
+        -:  176:                    }
+       90:  177:                    valor++;
+        -:  178:                }
+        -:  179:            }
+       40:  180:            if (valor>3)
+        -:  181:            {
+        1:  182:                return true;
+        -:  183:            }
+        -:  184:        }
+      154:  185:        if(rom[i]=='D')
+        -:  186:        {
+      104:  187:            for (int j=0; j<(int)rom.length();j++)
+        -:  188:            {
+       89:  189:                if (rom[j]==rom[i])
+        -:  190:                {
+       19:  191:                    valor++;
+        -:  192:                }
+        -:  193:            }
+       15:  194:            if (valor>1)
+        -:  195:            {
+        3:  196:                return true;
+        -:  197:            }
+        -:  198:        }
+      151:  199:        if(rom[i]=='M')
+        -:  200:        {
+      132:  201:            for (int k=i+1;k<(int)rom.length();k++)
+        -:  202:            {
+     107*:  203:                if (rom[k]==rom[i] && !(rom[k-1]!='C' || rom[k-1]!='M'))
+        -:  204:                {
+    #####:  205:                    return true;
+        -:  206:                }
+      107:  207:                if (k>1)
+        -:  208:                {
+       89:  209:                    if (rom[k]==rom[i] && rom[k-2]!='M')
+        -:  210:                    {
+        1:  211:                    return true;
+        -:  212:                    }
+        -:  213:                }
+        -:  214:            }
+      165:  215:            for (int j=0; j<(int)rom.length();j++)
+        -:  216:            {
+      140:  217:                if (rom[j]==rom[i])
+        -:  218:                {
+      47*:  219:                    if (valor==3 && rom[j-1]=='C')
+        -:  220:                    {
+    #####:  221:                        valor--;
+        -:  222:                    }
+       47:  223:                    valor++;
+        -:  224:                }
+        -:  225:            }
+       25:  226:            if (valor>3)
+        -:  227:            {
+        1:  228:                return true;
+        -:  229:            }
+        -:  230:        }
+        -:  231:    }
+       33:  232:    return false;
+        -:  233:}   
+        -:  234:
+       33:  235:int valor_decimal(string rom)
+        -:  236:{
+       33:  237:    int decimal=0;
+        -:  238:
+      193:  239:    for (int i=0; i<(int)rom.length();i++)
+        -:  240:    {
+      160:  241:        if (rom[i]=='C')
+        -:  242:        {
+       37:  243:            if ((rom[i+1]=='D' || rom[i+1]=='M') && i!=(int)rom.length()-1)
+        -:  244:            {
+        6:  245:                decimal-=100;
+        -:  246:            }
+        -:  247:            else
+        -:  248:            {
+       31:  249:                decimal+=100;
+        -:  250:            }
+        -:  251:        }
+      160:  252:        if (rom[i]=='X')
+        -:  253:        {
+       39:  254:            if ((rom[i+1]=='L' || rom[i+1]=='C') && i!=(int)rom.length()-1)
+        -:  255:            {
+        7:  256:                decimal-=10;
+        -:  257:            }
+        -:  258:             else
+        -:  259:            {
+       32:  260:                decimal+=10;
+        -:  261:            }
+        -:  262:        }
+      160:  263:            if (rom[i]=='I')
+        -:  264:        {
+       30:  265:            if ((rom[i+1]=='V' || rom[i+1]=='X') && i!=(int)rom.length()-1)
+        -:  266:            {
+        4:  267:                decimal-=1;
+        -:  268:            }
+        -:  269:            else
+        -:  270:            {
+       26:  271:                decimal+=1;
+        -:  272:            }
+        -:  273:        }
+      160:  274:        if (rom[i]=='M')
+        -:  275:        {
+       17:  276:            decimal+=1000;
+        -:  277:        }
+      160:  278:        if (rom[i]=='D')
+        -:  279:        {
+       10:  280:            decimal+=500;
+        -:  281:        }
+      160:  282:        if (rom[i]=='L')
+        -:  283:        {
+       13:  284:            decimal+=50;
+        -:  285:        }
+      160:  286:        if (rom[i]=='V')
+        -:  287:        {
+       14:  288:            decimal+=5;
+        -:  289:        }
+        -:  290:    }
+        -:  291:
+       33:  292:    return decimal;
+        -:  293:}
+        -:  294:
+        -:  295:
+        -:  296:
+       78:  297:int romanos_para_decimal(string romano)
+        -:  298:{
+       78:  299:    if (letra_invalida(romano))
+        -:  300:    {
+       11:  301:      return -1;
+        -:  302:    }
+       67:  303:    else if (sintaxe_errada(romano))
+        -:  304:    {
+       34:  305:      return -1;
+        -:  306:    }
+        -:  307:
+       33:  308:  return valor_decimal(romano);
+        -:  309:}
+        -:  310:
