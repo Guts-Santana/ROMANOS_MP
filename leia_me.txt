@@ -1,2 +1,8 @@
 ﻿com o g++ e o make e demais programas instalados 
-digite "make" neste diretório
+digite "make" no diretório
+se for testar o gcov, por algum motivo o make não funciona depois
+a não ser que apague o arquivo romanos.o
+aí é so rodar novamente
+
+por algum motivo os testes 7 e 8 não apareceram no git
+mas eles basicamente foram apenas correção de casos inválidos
